@@ -1338,7 +1338,7 @@ class EngineTest
         Engine
           .DevEngine()
           .reinterpret(
-            Set.empty,
+            Set(alice),
             lookupNode,
             nodeSeedMap.get(nid),
             txMeta.submissionTime,
@@ -1367,7 +1367,7 @@ class EngineTest
       val Right((reinterpreted, _)) =
         Engine
           .DevEngine()
-          .reinterpret(Set.empty, lookupNode, nodeSeedMap.get(nid), txMeta.submissionTime, now)
+          .reinterpret(Set(alice), lookupNode, nodeSeedMap.get(nid), txMeta.submissionTime, now)
           .consume(lookupContract, lookupPackage, lookupKey)
 
       firstLookupNode(reinterpreted.transaction).map(_._2) shouldEqual Some(lookupNode)
@@ -1508,7 +1508,7 @@ class EngineTest
       ValueRecord(
         Some(forkableTemplateId),
         ImmArray(
-          (Some[Name]("party"), ValueParty(alice)),
+          (Some[Name]("party"), ValueParty(party)),
           (Some[Name]("parent"), ValueOptional(None)))
       )
 
